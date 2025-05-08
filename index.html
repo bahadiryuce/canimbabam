@@ -15,12 +15,19 @@
   </audio>
 
   <div class="container">
-    <h1>İyi ki Doğdun Baba 🎂</h1>
+    <h1>🎂 İyi ki Doğdun Baba 🎂</h1>
     
     <video controls id="birthday-video">
       <source src="video.mp4" type="video/mp4">
       Tarayıcınız video etiketini desteklemiyor.
     </video>
+  
+    <video id="birthday-video" src="video.mp4" controls></video>
+
+<br />
+<button id="music-toggle-btn">Müziği Kapat</button>
+<audio id="bg-music" src="music.mp3" autoplay loop></audio>
+
     
     <div class="message-box">
       <p id="message">Buraya kendi doğum günü mesajını yaz...</p>
@@ -32,5 +39,57 @@
 
   <script src="confetti.js"></script>
   <script src="balloons.js"></script>
+ 
+  <script>
+  // Müzik ve video kontrol
+  const music = document.getElementById("bg-music");
+  const video = document.getElementById("birthday-video");
+  const musicBtn = document.getElementById("music-toggle-btn");
+
+  window.addEventListener("load", () => {
+    music.play().catch(() => {
+      console.log("Tarayıcı müziği otomatik oynatmadı.");
+    });
+  });
+
+  musicBtn.addEventListener("click", () => {
+    if (music.paused) {
+      music.play();
+      musicBtn.textContent = "Müziği Kapat";
+    } else {
+      music.pause();
+      musicBtn.textContent = "Müziği Başlat";
+    }
+  });
+
+  video.addEventListener("play", () => {
+    if (!music.paused) {
+      music.pause();
+      musicBtn.textContent = "Müziği Başlat";
+    }
+  });
+
+  // Konfeti patlaması
+  function launchConfetti() {
+    confetti({
+      particleCount: 120,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }
+  setInterval(launchConfetti, 6000);
+
+  // Balon oluşturma
+  function createBalloon() {
+    const balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+    balloon.style.left = Math.random() * 100 + "vw";
+    balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+    document.body.appendChild(balloon);
+    setTimeout(() => balloon.remove(), 10000);
+  }
+
+  setInterval(createBalloon, 800);
+</script>
 </body>
 </html>
