@@ -2,130 +2,35 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Barış Teklifi</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #ffe6e6;
-      overflow: hidden;
-      text-align: center;
-    }
-    img {
-      width: 200px;
-    }
-    h2 {
-      margin-top: 20px;
-      font-size: 24px;
-    }
-    .buttons {
-      margin-top: 20px;
-      position: relative;
-      height: 100px;
-    }
-    button {
-      padding: 12px 24px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 5px;
-      position: absolute;
-    }
-    #evet {
-      background-color: green;
-      color: white;
-      left: 0;
-    }
-    #hayir {
-      background-color: red;
-      color: white;
-      right: 0;
-    }
-    #mesaj {
-      margin-top: 20px;
-      font-size: 20px;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      color: #d60087;
-    }
-    .kalp {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      animation: fly 3s linear forwards;
-      pointer-events: none;
-    }
-    @keyframes fly {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-600px);
-        opacity: 0;
-      }
-    }
-    #uyari {
-      position: absolute;
-      bottom: 20px;
-      font-size: 14px;
-      color: #444;
-      opacity: 0;
-      transition: opacity 0.8s;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İyi ki Doğdun Baba</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-  <img src="https://via.placeholder.com/200" alt="Barış Resmi" />
-  <h2>Benimle barışır mısın?</h2>
-  <div class="buttons">
-    <button id="evet" onclick="evetTiklandi()">Evet</button>
-    <button id="hayir" onmouseover="kac()">Hayır</button>
+
+  <audio autoplay loop controls id="bg-music">
+    <source src="music.mp3" type="audio/mpeg" />
+    Tarayıcınız ses etiketini desteklemiyor.
+  </audio>
+
+  <div class="container">
+    <h1>İyi ki Doğdun Baba 🎂</h1>
+    
+    <video controls id="birthday-video">
+      <source src="video.mp4" type="video/mp4">
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+    
+    <div class="message-box">
+      <p id="message">Buraya kendi doğum günü mesajını yaz...</p>
+    </div>
   </div>
-  <div id="mesaj">Piremsesim seni çok seviyorum 💖</div>
-  <div id="uyari">Benden öyle kolay kurtulamazsın!</div>
 
-  <audio id="muzik" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3"></audio>
+  <canvas id="confetti-canvas"></canvas>
+  <div id="balloon-container"></div>
 
-  <script>
-    function evetTiklandi() {
-      document.getElementById("mesaj").style.opacity = 1;
-      document.getElementById("muzik").play();
-
-      // Kalp animasyonu
-      for (let i = 0; i < 30; i++) {
-        let kalp = document.createElement("div");
-        kalp.classList.add("kalp");
-        kalp.innerHTML = "💖";
-        kalp.style.left = Math.random() * window.innerWidth + "px";
-        kalp.style.top = window.innerHeight + "px";
-        document.body.appendChild(kalp);
-        setTimeout(() => kalp.remove(), 3000);
-      }
-    }
-
-    function kac() {
-      let hayir = document.getElementById("hayir");
-      let x = Math.random() * (window.innerWidth - 100);
-      let y = Math.random() * (window.innerHeight - 50);
-      hayir.style.left = x + "px";
-      hayir.style.top = y + "px";
-
-      // Yazı fade-in
-      let uyari = document.getElementById("uyari");
-      uyari.style.opacity = 1;
-    }
-  </script>
+  <script src="confetti.js"></script>
+  <script src="balloons.js"></script>
 </body>
 </html>
