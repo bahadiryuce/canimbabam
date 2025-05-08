@@ -124,6 +124,13 @@
     }
 
     setInterval(createBalloon, 800);
+     setInterval(() => {
+      confetti({
+        particleCount: 100,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+    }, 5000);
   </script>
 </body>
 </html>
