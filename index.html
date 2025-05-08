@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
-<body>  
- <audio autoplay loop controls id="bg-music">
-  <br />
-  <button id="music-toggle-btn">Müziği Kapat</button>
-  <audio id="bg-music" src="music.mp3" autoplay loop></audio>
-<audio/>
+<body>
+
+  <audio autoplay loop controls id="bg-music">
+    <source src="music.mp3" type="audio/mpeg" />
+    Tarayıcınız ses etiketini desteklemiyor.
+  </audio>
 
   <div class="container">
     <h1>İyi ki Doğdun Baba 🎂</h1>
@@ -32,14 +32,5 @@
 
   <script src="confetti.js"></script>
   <script src="balloons.js"></script>
-  <script>
-    musicBtn.addEventListener("click", () => {
-      if (music.paused) {
-        music.play();
-        musicBtn.textContent = "Müziği Kapat";
-      } else {
-        music.pause();
-        musicBtn.textContent = "Müziği Başlat
-  </script>
 </body>
 </html>
