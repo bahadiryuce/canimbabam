@@ -5,7 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>İyi ki Doğdun Baba</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js">
+    const music = document.getElementById("bg-music");
+const video = document.getElementById("birthday-video");
+const musicBtn = document.getElementById("music-toggle-btn");
+
+// Sayfa açıldığında müzik çalsın
+window.addEventListener("load", () => {
+  music.play().catch(e => console.log("Müzik autoplay engellendi"));
+});
+
+// Butona tıklayınca müzik başlat/kapat
+musicBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.textContent = "Müziği Kapat";
+  } else {
+    music.pause();
+    musicBtn.textContent = "Müziği Başlat";
+  }
+});
+
+// Video oynatılınca müzik dursun
+video.addEventListener("play", () => {
+  if (!music.paused) {
+    music.pause();
+    musicBtn.textContent = "Müziği Başlat";
+  }
+});
+
+  </script>
+  
 </head>
 <body>
 
@@ -35,6 +65,5 @@
   <button id="music-toggle-btn">Müziği Kapat</button>
 <audio id="bg-music" src="music.mp3" autoplay loop></audio>
 <video id="birthday-video" src="video.mp4" controls></video>
-
 </body>
 </html>
