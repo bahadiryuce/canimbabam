@@ -102,17 +102,16 @@
         musicBtn.textContent = "Müziği Başlat";
       }
     });
-
     // Konfeti patlaması
-    function launchConfetti() {
+ setInterval(() => {
       confetti({
-        particleCount: 120,
-        spread: 70,
+        particleCount: 100,
+        spread: 100,
         origin: { y: 0.6 }
       });
+    }, 5000);
+      });
     }
-    setInterval(launchConfetti, 6000);
-
     // Balon oluşturma
     function createBalloon() {
       const balloon = document.createElement("div");
@@ -122,15 +121,6 @@
       document.body.appendChild(balloon);
       setTimeout(() => balloon.remove(), 10000);
     }
- <script>  
-    setInterval(createBalloon, 800);
-     setInterval(() => {
-      confetti({
-        particleCount: 100,
-        spread: 100,
-        origin: { y: 0.6 }
-      });
-    }, 5000);
   </script>
 </body>
 </html>
