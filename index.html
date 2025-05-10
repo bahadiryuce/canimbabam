@@ -239,8 +239,17 @@
   </audio>
 
   <!-- Zarf simgeleri -->
-  <img src="envelope.png" id="left-envelope" class="envelope" alt="Zarf (Sol)">
-  <img src="envelope.png" id="right-envelope" class="envelope" alt="Zarf (Sağ)">
+  <!-- ZARF SİMGESİ SOL -->
+<img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" class="envelope" id="left-envelope" onclick="togglePhoto('left-photo')">
+
+<!-- GİZLİ FOTOĞRAF SOL -->
+<img src="left.jpg" id="left-photo" class="hidden-photo">
+
+<!-- ZARF SİMGESİ SAĞ -->
+<img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" class="envelope" id="right-envelope" onclick="togglePhoto('right-photo')">
+
+<!-- GİZLİ FOTOĞRAF SAĞ -->
+<img src="right.jpg" id="right-photo" class="hidden-photo">
 
   <!-- Fotoğraflar -->
   <img src="left.jpg" id="left-photo" class="hidden-photo" alt="Sol Fotoğraf" />
