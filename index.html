@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Comic Neue', 'Arial', sans-serif;
-      background: #fffaf4;
+      background: #fdf6ee; /* EKRU/KREM */
       color: #333;
       text-align: center;
       overflow-x: hidden;
@@ -88,24 +88,39 @@
       font-size: 12px;
     }
 
-    #left-photo {
+    .envelope {
       position: fixed;
       top: 50%;
-      left: 10px;
       transform: translateY(-50%);
-      width: 150px;
+      width: 100px;
       height: auto;
       z-index: 10;
+      cursor: pointer;
+    }
+
+    #left-envelope {
+      left: 10px;
+    }
+
+    #right-envelope {
+      right: 10px;
+    }
+
+    .hidden-photo {
+      display: none;
+      position: fixed;
+      top: 50%;
+      width: 150px;
+      transform: translateY(-50%);
+      z-index: 11;
+    }
+
+    #left-photo {
+      left: 10px;
     }
 
     #right-photo {
-      position: fixed;
-      top: 50%;
       right: 10px;
-      transform: translateY(-50%);
-      width: 150px;
-      height: auto;
-      z-index: 10;
     }
 
     .balloons-container {
@@ -122,7 +137,7 @@
       bottom: -100px;
       width: 40px;
       height: 60px;
-      background: radial-gradient(circle at 30% 30%, #ff77aa, #e54b8d);
+      background: radial-gradient(circle at 30% 30%, #77aaff, #4b8de5);
       border-radius: 50% 50% 45% 45%;
       animation: floatUp 10s linear infinite;
       opacity: 0.8;
@@ -139,7 +154,7 @@
       }
     }
 
-    /* 📱 Mobil Uyumluluk - Media Query */
+    /* 📱 Mobil Uyumluluk */
     @media (max-width: 768px) {
       #intro h1 {
         font-size: 2em;
@@ -163,9 +178,12 @@
         width: 90%;
       }
 
-      #left-photo,
-      #right-photo {
-        display: none;
+      .envelope {
+        width: 60px;
+      }
+
+      .hidden-photo {
+        width: 90px;
       }
 
       video {
@@ -220,8 +238,13 @@
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <img src="left.jpg" id="left-photo" alt="Sol Fotoğraf" />
-  <img src="right.jpg" id="right-photo" alt="Sağ Fotoğraf" />
+  <!-- Zarf simgeleri -->
+  <img src="envelope.png" id="left-envelope" class="envelope" alt="Zarf (Sol)">
+  <img src="envelope.png" id="right-envelope" class="envelope" alt="Zarf (Sağ)">
+
+  <!-- Fotoğraflar -->
+  <img src="left.jpg" id="left-photo" class="hidden-photo" alt="Sol Fotoğraf" />
+  <img src="right.jpg" id="right-photo" class="hidden-photo" alt="Sağ Fotoğraf" />
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
@@ -235,23 +258,30 @@
     }, 5000);
 
     const music = document.getElementById('bg-music');
-    const video = document.getElementById("birthdayVideo");
     const musicToggle = document.getElementById('music-toggle');
     let isPlaying = false;
 
     musicToggle.addEventListener('click', () => {
       if (isPlaying) {
         music.pause();
-        musicToggle.textContent = '🎵 Müziği Başlat';
+        musicToggle.textContent = "🎵 Müziği Başlat";
       } else {
-        music.play().catch(e => {
-          alert("Müzik oynatılamıyor.");
-        });
-        musicToggle.textContent = '⏸ Müziği Durdur';
+        music.play();
+        musicToggle.textContent = "⏸ Müziği Durdur";
       }
       isPlaying = !isPlaying;
     });
-  </script>
 
+    // Zarf simgeleri tıklanınca fotoğraf açılır
+    document.getElementById('left-envelope').addEventListener('click', () => {
+      const photo = document.getElementById('left-photo');
+      photo.style.display = (photo.style.display === 'none' || photo.style.display === '') ? 'block' : 'none';
+    });
+
+    document.getElementById('right-envelope').addEventListener('click', () => {
+      const photo = document.getElementById('right-photo');
+      photo.style.display = (photo.style.display === 'none' || photo.style.display === '') ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>
